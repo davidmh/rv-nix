@@ -1,0 +1,66 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1756565163,
+        "narHash": "sha256-fmQeroxSeZnPwuarOUQNVhuiSZFxNLiwu8pPwHLDO5o=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a84dbbecc82aa208f11a16d37ed27996af3b477e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay",
+        "rv-src": "rv-src"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756521112,
+        "narHash": "sha256-/YW9DI+vZ2lbTvYAek6BsudUXdpWr0FybTDod4P42L4=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "2243e3f251ea18486f83133cf8e325d2b9b71e89",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rv-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756441980,
+        "narHash": "sha256-locZ+pUtBavccLKSGz04lWTKQZQJXYvA3tblExLhUQw=",
+        "owner": "spinel-coop",
+        "repo": "rv",
+        "rev": "f0be922d49d748d455bddb768e6edb0e8431fb5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spinel-coop",
+        "ref": "v0.1.1",
+        "repo": "rv",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
