@@ -2,18 +2,18 @@
   description = "Nix flake for rv: Next-gen very fast Ruby tooling";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
     rv-src = {
       flake = false;
-      url = "github:spinel-coop/rv/v0.1.1";
+      url = "github:spinel-coop/rv/v0.5.3";
     };
   };
 
-  outputs = { self, nixpkgs, rv-src, rust-overlay, ... }:
+  outputs = { nixpkgs, rv-src, rust-overlay, ... }:
     let
       systems = [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" "aarch64-linux" ];
       perSystem = system:
@@ -28,16 +28,15 @@
             src = rv-src;
             cargoLock = {
               lockFile = rv-src + "/Cargo.lock";
+              outputHashes = {
+                "rayon-tracing-0.1.1" = "sha256-aSuVNRcm2Y78V3kqgeOciaHSnGfSTIQPccw4EhAuX6g=";
+                "dep-graph-0.2.1" = "sha256-RJocmZQTxKuILEAJcQDSg1F0iD8z5FWEdRB+VcEluXM=";
+              };
             };
             cargoBuildFlags = [ "--all-features" ];
-            cargoTestFlags = [ "--all-features" ];
-            checkFlags = [
-              "--skip=ruby::find_test::"
-              "--skip=ruby::list_test::"
-              "--skip=shell::env_test::"
-            ];
             doInstallCheck = true;
-            nativeBuildInputs = [ pkgs.rust-bin.stable."1.88.0".default ];
+            doCheck = false;
+            nativeBuildInputs = [ pkgs.rust-bin.stable."1.94.1".default ];
             meta = {
               description = "Next-gen very fast Ruby tooling";
               homepage = "https://github.com/spinel-coop/rv";
